@@ -7,14 +7,17 @@
   width: 100%;
 }
 
-.friend-item {
-  padding: 6px;
-  border-radius: 12px;
-  border: 1px solid #212121;
+.friend-item-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.friend-item {
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #212121;
   width: calc(100% / 5);
 }
 

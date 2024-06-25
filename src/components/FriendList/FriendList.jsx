@@ -17,7 +17,7 @@ const FriendList = ({ friends }) => {
 
 const FriendListItem = ({ friends: { avatar, name, isOnline } }) => {
   return (
-    <div>
+    <div className={css["friend-item-container"]}>
       <img src={avatar} alt="Avatar" width="64" />
       <p className={css["text-title"]}>{name}</p>
       <p

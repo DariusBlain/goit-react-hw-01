@@ -1,6 +1,27 @@
 import css from "./TransactionHistory.module.css";
 
-const TransactionHistory = (items) => {
+const TransactionHistory = ({ items }) => {
+  const idSet = new Set();
+  const hasDuplicateIds = items.some(({ id }) => {
+    if (idSet.has(id)) {
+      console.warn(`Duplicate id found: ${id}`);
+      return true;
+    }
+    idSet.add(id);
+    return false;
+  });
+
+  if (hasDuplicateIds) {
+    idSet.clear();
+    items = items.filter(({ id }) => {
+      if (idSet.has(id)) {
+        return false;
+      }
+      idSet.add(id);
+      return true;
+    });
+  }
+
   return (
     <table className={css["table"]}>
       <thead className={css["thead"]}>
@@ -12,7 +33,7 @@ const TransactionHistory = (items) => {
       </thead>
 
       <tbody>
-        {items.items.map(({ id, type, amount, currency }) => {
+        {items.map(({ id, type, amount, currency }) => {
           return (
             <tr className={css["tr-body"]} key={id}>
               <td className={css["td"]}>{type}</td>
